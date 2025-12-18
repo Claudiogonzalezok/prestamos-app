@@ -1,206 +1,193 @@
-📂 Estructura del Proyecto
+# 💰 prestamos-app
+
+Sistema integral de **gestión de préstamos** para financieras, con soporte **multi-tenant**, panel web administrativo y aplicación móvil para clientes.
+
+El proyecto permite administrar clientes, préstamos, cuotas y pagos de forma segura, centralizada y escalable.
+
+---
+
+## 📂 Estructura del Proyecto
+
+
 prestamos-app/
-├── backend/          # API REST (Node.js + Express + MongoDB)
-├── frontend/         # Panel Web Administrativo (React)
-├── mobile/           # App Mobile para clientes (React Native)
-└── docs/             # Documentación técnica y funcional
+├── backend/ # API REST (Node.js + Express + MongoDB)
+├── frontend/ # Panel Web Administrativo (React)
+├── mobile/ # App Mobile para clientes (React Native)
+└── docs/ # Documentación técnica y funcional
 
-📌 Descripción de cada módulo
+---
 
-backend/
-API principal del sistema. Maneja autenticación, lógica de negocio, cálculos financieros y persistencia de datos.
+## 📌 Descripción de Carpetas
 
-frontend/
-Panel web para empleados y administradores de la financiera:
+### 🔧 backend/
+API principal del sistema.
 
-Gestión de clientes
+- Autenticación (JWT)
+- Lógica de negocio
+- Cálculo de intereses y mora
+- Persistencia de datos (MongoDB)
 
-Alta y seguimiento de préstamos
+---
 
-Control de cuotas y pagos
+### 🖥️ frontend/
+Panel web para empleados y administradores.
 
-Reportes
+- Gestión de clientes
+- Alta y seguimiento de préstamos
+- Control de cuotas y pagos
+- Reportes
 
-mobile/
-Aplicación móvil para clientes:
+---
 
-Consulta de préstamos
+### 📱 mobile/
+Aplicación móvil para clientes.
 
-Estado de cuotas
+- Consulta de préstamos
+- Estado de cuotas
+- Historial de pagos
+- Notificaciones
 
-Historial de pagos
+---
 
-Notificaciones
+### 📚 docs/
+Documentación del proyecto.
 
-docs/
-Diagramas, documentación de API, reglas de negocio y decisiones técnicas.
+- Diagramas
+- Reglas de negocio
+- Decisiones técnicas
+- Endpoints de la API
 
-🧠 Modelo de Datos – Visión General
+---
 
-El sistema está diseñado bajo un enfoque multi-tenant, donde cada financiera gestiona su propio conjunto de usuarios, clientes y préstamos.
+## 🧠 Modelo de Datos (Conceptual)
 
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Financiera │────<│   Usuario   │────<│   Cliente   │
-│  (tenant)   │     │ (empleados) │     │  (deudores) │
-└─────────────┘     └─────────────┘     └─────────────┘
-                                               │
-                    ┌─────────────┐            │
-                    │ Configuración│            │
-                    │ (tasas, mora)│            │
-                    └─────────────┘            │
-                                               ▼
-                                        ┌─────────────┐
-                                        │  Préstamo   │
-                                        └─────────────┘
-                                               │
-                                               ▼
-                                        ┌─────────────┐
-                                        │   Cuota     │
-                                        └─────────────┘
-                                               │
-                                               ▼
-                                        ┌─────────────┐
-                                        │    Pago     │
-                                        └─────────────┘
+Relaciones principales del sistema:
 
-🧩 Modelos de Datos Principales
-🏦 Financiera (Tenant)
+- Una **Financiera** tiene muchos **Usuarios**
+- Un **Usuario** gestiona **Clientes**
+- Un **Cliente** puede tener varios **Préstamos**
+- Cada **Préstamo** tiene **Cuotas**
+- Cada **Cuota** puede tener **Pagos**
 
-Representa a la entidad financiera.
+---
 
-Datos institucionales
+## 🧩 Modelos Principales
 
-Configuración general
+### 🏦 Financiera (Tenant)
+Entidad principal del sistema.
 
-Relación con usuarios y clientes
+- Datos institucionales
+- Configuración financiera
+- Aislamiento de datos (multi-tenant)
 
-👤 Usuario (Empleados)
+---
 
+### 👤 Usuario (Empleados)
 Usuarios internos de la financiera.
 
-Roles: admin, empleado
+- Roles: `admin`, `empleado`
+- Autenticación y permisos
+- Operación del sistema
 
-Autenticación y permisos
+---
 
-Gestión operativa del sistema
-
-👥 Cliente (Deudores)
-
+### 👥 Cliente (Deudores)
 Personas que reciben préstamos.
 
-Datos personales
+- Datos personales
+- Préstamos asociados
+- Historial crediticio
 
-Relación con préstamos
+---
 
-Historial crediticio
+### ⚙️ Configuración
+Parámetros financieros.
 
-⚙️ Configuración
+- Tasas de interés
+- Interés por mora
+- Penalizaciones
+- Reglas de cálculo
 
-Parámetros financieros de la financiera.
+---
 
-Tasas de interés
+### 💵 Préstamo
+Contrato financiero.
 
-Interés por mora
+- Monto
+- Plazo
+- Tasa aplicada
+- Estado del préstamo
 
-Penalizaciones
+---
 
-Reglas de cálculo
+### 📆 Cuota
+Detalle de pagos programados.
 
-💵 Préstamo
+- Número de cuota
+- Monto
+- Fecha de vencimiento
+- Estado (pendiente, pagada, vencida)
 
-Contrato financiero entre la financiera y el cliente.
+---
 
-Monto
+### 💳 Pago
+Registro de pagos realizados.
 
-Plazo
+- Fecha
+- Monto
+- Medio de pago
+- Aplicación a cuotas
 
-Tasa aplicada
+---
 
-Estado del préstamo
+## 🛠️ Tecnologías Utilizadas
 
-📆 Cuota
+### Backend
+- Node.js
+- Express
+- MongoDB + Mongoose
+- JWT
 
-Detalle de pagos programados del préstamo.
+### Frontend
+- React
+- React Router
+- Axios
+- Bootstrap / React-Bootstrap
 
-Número de cuota
+### Mobile
+- React Native
+- API REST compartida
 
-Monto
+---
 
-Fecha de vencimiento
+## 🔐 Seguridad
 
-Estado (pendiente, pagada, vencida)
+- Autenticación con JWT
+- Control de acceso por roles
+- Aislamiento por financiera
+- Validaciones en backend
 
-💳 Pago
+---
 
-Registro de pagos realizados por el cliente.
+## 🚀 Estado del Proyecto
 
-Fecha
+🟡 En desarrollo activo
 
-Monto
+Arquitectura modular preparada para escalar.
 
-Medio de pago
+---
 
-Aplicación a cuotas
+## 📌 Próximos Pasos
 
-🛠️ Tecnologías Utilizadas
-Backend
+- [ ] Reportes financieros
+- [ ] Gestión de mora automática
+- [ ] Notificaciones push / email
+- [ ] Exportación de datos
+- [ ] Auditoría de operaciones
 
-Node.js
+---
 
-Express
+## 📄 Licencia
 
-MongoDB + Mongoose
-
-JWT (autenticación)
-
-Middleware de roles y permisos
-
-Frontend
-
-React
-
-React Router
-
-Bootstrap / React-Bootstrap
-
-Axios
-
-Mobile
-
-React Native
-
-Expo (opcional)
-
-API REST compartida con frontend
-
-🔐 Seguridad
-
-Autenticación basada en JWT
-
-Control de acceso por roles
-
-Aislamiento de datos por financiera (multi-tenant)
-
-Validaciones a nivel backend
-
-🚀 Estado del Proyecto
-
-En desarrollo activo
-Diseño modular preparado para crecimiento y escalabilidad.
-
-📌 Próximos pasos sugeridos
-
- Definir flujos de mora automática
-
- Reportes financieros
-
- Notificaciones push / email
-
- Exportación de datos
-
- Auditoría de operaciones
-
-📄 Licencia
-
-Proyecto de uso educativo / académico.
+Proyecto de uso educativo / académico.  
 Licencia a definir.
