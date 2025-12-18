@@ -120,7 +120,7 @@ Authorization: Bearer <token>
 ## 🔧 Variables de Entorno
 
 ```env
-PORT=5000
+PORT=5001
 MONGO_URI=mongodb+srv://...
 JWT_SECRET=clave_secreta
 JWT_ACCESS_EXPIRATION=1d
