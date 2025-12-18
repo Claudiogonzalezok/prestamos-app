@@ -8,13 +8,13 @@ El proyecto permite administrar clientes, préstamos, cuotas y pagos de forma se
 
 ## 📂 Estructura del Proyecto
 
-
+```
 prestamos-app/
 ├── backend/ # API REST (Node.js + Express + MongoDB)
 ├── frontend/ # Panel Web Administrativo (React)
 ├── mobile/ # App Mobile para clientes (React Native)
 └── docs/ # Documentación técnica y funcional
-
+```
 ---
 
 ## 📌 Descripción de Carpetas
