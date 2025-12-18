@@ -6,6 +6,7 @@ El proyecto permite administrar clientes, préstamos, cuotas y pagos de forma se
 
 ---
 
+El sistema está diseñado bajo un enfoque multi-tenant, donde cada financiera gestiona su propio conjunto de usuarios, clientes y préstamos.
 ## 📂 Estructura del Proyecto
 
 ```
@@ -16,7 +17,37 @@ prestamos-app/
 └── docs/ # Documentación técnica y funcional
 ```
 ---
+##🧠 Modelo de Datos – Visión General
 
+```
+┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+│  Financiera │────<│   Usuario   │────<│   Cliente   │
+│  (tenant)   │     │ (empleados) │     │  (deudores) │
+└─────────────┘     └─────────────┘     └─────────────┘
+                                               │
+                    ┌─────────────┐            │
+                    │ Configuración│            │
+                    │ (tasas, mora)│            │
+                    └─────────────┘            │
+                                               ▼
+                                        ┌─────────────┐
+                                        │  Préstamo   │
+                                        └─────────────┘
+                                               │
+                                               ▼
+                                        ┌─────────────┐
+                                        │   Cuota     │
+                                        └─────────────┘
+                                               │
+                                               ▼
+                                        ┌─────────────┐
+                                        │    Pago     │
+                                        └─────────────┘
+
+
+```
+
+El sistema está diseñado bajo un enfoque multi-tenant, donde cada financiera gestiona su propio conjunto de usuarios, clientes y préstamos.
 ## 📌 Descripción de Carpetas
 
 ### 🔧 backend/
