@@ -41,19 +41,38 @@ npm run dev
 ```
 backend/
 ├── server.js              # Punto de entrada
-├── src/
-│   ├── models/            # Modelos de MongoDB
-│   │   ├── Financiera.js  # Tenant principal
-│   │   ├── Usuario.js     # Admins y empleados
-│   │   ├── Cliente.js     # Deudores
-│   │   ├── Prestamo.js    # Préstamos
-│   │   ├── Cuota.js       # Cuotas individuales
-│   │   └── Pago.js        # Registro de pagos
-│   ├── routes/            # Rutas de la API
-│   ├── middlewares/       # Auth, permisos
-│   ├── utils/             # Cálculos de préstamos
-│   └── services/          # Servicios (WhatsApp, etc.)
-└── uploads/               # Archivos subidos
+│──src/
+      │── middlewares/       # Auth, permisos
+      │── models/            # Modelos de MongoDB
+      │   ├── Financiera.js  # Tenant principal
+      │   ├── Usuario.js     # Admins y empleados
+      │   ├── Cliente.js     # Deudores
+      │   ├── Prestamo.js    # Préstamos
+      │   ├── Cuota.js       # Cuotas individuales
+      │   └── Pago.js        # Registro de pagos
+      ├── controllers/         
+      │   ├── authController.js
+      │   ├── clienteController.js
+      │   ├── prestamoController.js
+      │   ├── cuotaController.js
+      │   ├── pagoController.js
+      │   ├── financieraController.js
+      │   ├── usuarioController.js
+      │   ├── reporteController.js
+      │   └── portalClienteController.js
+      └── routes/               ← REEMPLAZAR estos archivos
+      │   ├── authRoutes.js
+      │   ├── clienteRoutes.js
+      │   ├── prestamoRoutes.js
+      │   ├── cuotaRoutes.js
+      │   ├── pagoRoutes.js
+      │   ├── financieraRoutes.js
+      │   ├── usuarioRoutes.js
+      │   ├── reporteRoutes.js
+      │   └── portalClienteRoutes.js
+      │── utils/             # Cálculos de préstamos
+      │── services/          # Servicios (WhatsApp, etc.)
+      │── uploads/               # Archivos subidos
 ```
 
 ## 🔐 Autenticación
