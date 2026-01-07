@@ -1,3 +1,6 @@
+//Ese código implementa un contexto de autenticación en React (con Context + useState + useEffect) 
+//para manejar el login, registro y logout de usuarios, además de persistir la sesión en localStorage. 
+
 import { createContext, useState, useContext, useEffect } from 'react';
 import { loginUsuario, registroFinanciera, getMe, logoutUsuario } from '../services/authService';
 
