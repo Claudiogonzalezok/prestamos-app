@@ -1,3 +1,9 @@
+//Ese archivo configura un cliente Axios con interceptores para:
+
+//Adjuntar el token JWT en cada request (Authorization: Bearer ...).
+//Normalizar responses devolviendo response.data.
+//Manejar 401 (no autorizado): limpiar localStorage y redirigir a /login
+
 import axios from 'axios';
 
 const apiClient = axios.create({
