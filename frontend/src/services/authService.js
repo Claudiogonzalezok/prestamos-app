@@ -1,3 +1,6 @@
+//Define servicios de autenticación que consumen tu API usando el cliente Axios que configuraste (apiClient). 
+//Cada función corresponde a una operación específica del backend
+
 import apiClient from './apiClient';
 
 export const loginUsuario = async (email, password) => {
