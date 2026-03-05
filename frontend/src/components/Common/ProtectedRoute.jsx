@@ -1,8 +1,12 @@
 import { useAuth } from '../../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
-export default function ProtectedRoute({ children }) {
-  const { isAuthenticated, loading } = useAuth();
+// ProtectedRoute now supports optional role-based access control.
+// Props:
+// - children: React nodes to render when allowed
+// - allowedRoles: optional array of role strings (e.g. ["admin", "empleado"])
+export default function ProtectedRoute({ children, allowedRoles = null }) {
+  const { isAuthenticated, loading, usuario } = useAuth();
 
   if (loading) {
     return (
@@ -13,7 +17,16 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" replace />;
+  }
+
+  // If allowedRoles is provided, check the current user's role (usuario.rol).
+  if (allowedRoles && Array.isArray(allowedRoles)) {
+    const rolUsuario = usuario?.rol || null;
+    if (!rolUsuario || !allowedRoles.includes(rolUsuario)) {
+      // Redirigir al dashboard principal (que mostrará el dashboard según rol)
+      return <Navigate to="/dashboard" replace />;
+    }
   }
 
   return children;
